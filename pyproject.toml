@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jay-first-cli-text-tool"
+version = "0.1.0"
+description = "A tested Python CLI for text statistics, chunking and mock summarization"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Jay"}]
+keywords = ["cli", "text-processing", "pytest"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+openai = ["openai>=1"]
+
+[project.scripts]
+first-cli = "first_cli.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
