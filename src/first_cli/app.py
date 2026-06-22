@@ -9,6 +9,7 @@ from .word_freq import word_freq_cnt
 from .word_chunk import Wordchunk
 from .create_json import create_json
 from .text_status import TextStats
+from .word_freq import count_words
 
 
 def main():
@@ -25,6 +26,7 @@ def main():
     # 传入文件名、词块大小
     fname = args.filename
     chunk_size = args.chunk_size
+    target_word = args.word
 
     logger.info("Program started. input_file=%s chunk_size=%s", fname, chunk_size)
 
@@ -71,7 +73,8 @@ def main():
         print(summ)
         logging.info(summ)
     if args.freq:
-        freq_result = word_freq_cnt(fname)
+        top = args.top
+        freq_result = word_freq_cnt(fname,top)
         print("Top 10 words in this text!")
         print(freq_result)#打印词频最高的十个单词
 
@@ -90,6 +93,9 @@ def main():
         logger.info("JSON output created. output_path=%s", output_file)
         print("Successfully create the json")
 
+    if args.word:
+        count = count_words(text, args.word)
+        print(f"{args.word}: {count}")
     logger.info("Program finished.")
     print("运行完毕")
 if __name__ == "__main__":
