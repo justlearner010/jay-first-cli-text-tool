@@ -10,7 +10,7 @@ def test_word_freq_basic(tmp_path):
         "apple banana apple\nbanana orange apple"
     )
 
-    result = word_freq_cnt(test_file)
+    result = word_freq_cnt(test_file,10)
 
     assert result == [
         ("apple", 3),
@@ -26,7 +26,7 @@ def test_word_freq_ignore_case(tmp_path):
         "Apple apple APPLE Banana"
     )
 
-    result = word_freq_cnt(test_file)
+    result = word_freq_cnt(test_file,10)
 
     assert result == [
         ("apple", 3),
@@ -41,7 +41,7 @@ def test_word_freq_top_n(tmp_path):
         "a a a b b c"
     )
 
-    result = word_freq_cnt(test_file, top_n=2)
+    result = word_freq_cnt(test_file,2)
 
     assert result == [
         ("a", 3),
@@ -54,6 +54,6 @@ def test_word_freq_empty_file(tmp_path):
 
     test_file.write_text("")
 
-    result = word_freq_cnt(test_file)
+    result = word_freq_cnt(test_file,10)
 
     assert result == []

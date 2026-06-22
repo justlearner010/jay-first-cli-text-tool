@@ -34,4 +34,17 @@ def parse_args():
         help="create json file of this text to show the chunks"
     )
 
+    parser.add_argument(
+        "--word",
+        type=str,
+        help= "display the frequency of selected words"
+    )
+
+    parser.add_argument(
+        "--top",
+        type = int,
+        default=10,
+        help="show top N words"
+    )
+
     return parser.parse_args()
