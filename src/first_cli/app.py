@@ -74,7 +74,11 @@ def main():
         logging.info(summ)
     if args.freq:
         top = args.top
-        freq_result = word_freq_cnt(fname,top)
+        try:
+            freq_result = word_freq_cnt(fname, top)
+        except ValueError as exc:
+            logger.error("Top value is invalid. top=%s", top)
+            sys.exit(str(exc))
         print("Top 10 words in this text!")
         print(freq_result)#打印词频最高的十个单词
 
@@ -94,8 +98,9 @@ def main():
         print("Successfully create the json")
 
     if args.word:
-        count = count_words(text, args.word)
-        print(f"{args.word}: {count}")
+        target_word = args.word.strip().lower()
+        count = count_words(text, target_word)
+        print(f"{target_word}: {count}")
     logger.info("Program finished.")
     print("运行完毕")
 if __name__ == "__main__":
