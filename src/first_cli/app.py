@@ -72,6 +72,14 @@ def main():
     / f"{Path(fname).stem}.json"
     )
 
+    output_actions = {
+        args.summary,
+        args.status,
+        args.createjson,
+        args.word,
+        args.freq
+    }
+
 
 
     if args.summary:
@@ -109,5 +117,10 @@ def main():
         print(f"{target_word}: {count}")
     logger.info("Program finished.")
     print("运行完毕")
+
+    if not any(output_actions):
+        args.error("请至少选择一个功能进行输出，例如 --word,--freq,详情见--help")
+
+
 if __name__ == "__main__":
     main()
