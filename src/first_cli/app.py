@@ -36,7 +36,13 @@ def main():
     except FileNotFoundError:
         logger.error("Input file does not exist. input_file=%s", fname)
         sys.exit("File does not exist")
-
+    except PermissionError:
+        logger.error("Input file does not have permission to open.input_file=%s",fname)
+        sys.exit("File does not have permission to open")
+    except UnicodeDecodeError:
+        logger.error("Input file's Unicode decode error.input_file=%s,fname")
+        sys.exit("fail to unicode decode")
+ 
     if not text.strip():
         logger.error("Input file is empty. input_file=%s", fname)
         sys.exit("Input file is empty")
