@@ -47,7 +47,7 @@ def run(args):
         
     if args.createjson:    
         #输出json文件
-        handle_json(fname,text)
+        handle_createjson(fname,text)
         
 
     if args.word:
@@ -84,7 +84,7 @@ def handle_status(filename):
     print(f"数字的个数为{digit}")#打印数字数
     print(f"空格数为{space}")#打印空格数
 
-def handle_json(fname,text):
+def handle_createjson(fname,text):
     output_file = (
             Path("output")
             / f"{Path(fname).stem}.json"
