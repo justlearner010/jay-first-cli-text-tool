@@ -3,41 +3,21 @@ from dataclasses import dataclass
 
 
 class TextStats:
-    fname:str
+    
+    def __init__(self,text):
+        self.text = text
 
-
+    
     def space_check(self):
-        space_cnt = 0
-        with open(self.fname,"r") as f:
-            for line in f:
-                for word in line:
-                    if(word.isspace()):
-                        space_cnt += 1
-        return space_cnt
+        return sum(char.isspace() for char in self.text)
 
     def line_check(self):
-        lines = 0
-        with open(self.fname,"r") as file:
-            for line in file:
-                lines = lines+1
-
-        return lines
-
-
+        return len(self.text.splitlines())
+    
 
     def word_check(self):
-        word_cnt = 0
-        with open(self.fname,"r") as file:
-            for line in file:
-                words = line.split()
-                word_cnt +=len(words)
-        return word_cnt
+        return len(self.text.split())
+    
 
     def digit_check(self):
-        digit_cnt = 0
-        with open(self.fname,"r") as f:
-            for line in f:
-                for word in line:
-                    if(word.isdigit()):
-                        digit_cnt += 1
-        return digit_cnt
+        return sum(char.isdigit() for char in self.text)
