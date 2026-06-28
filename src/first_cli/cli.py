@@ -1,5 +1,6 @@
 import argparse
-def parse_args():
+
+def build_parser():
     parser = argparse.ArgumentParser(
     description="Analyze text files and generate chunk."
     )
@@ -46,5 +47,9 @@ def parse_args():
         default=10,
         help="show top N words"
     )
+    return parser
 
-    return parser.parse_args()
+def parse_args(argv = None):
+    parser = build_parser()
+
+    return parser.parse_args(argv)
