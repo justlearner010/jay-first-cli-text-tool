@@ -53,7 +53,7 @@ def run(args):
         handle_word(text, args.word)
 
     logger.info("Program finished.")
-    print("运行完毕")
+   
     return 0
 
 def build_summary(text):
