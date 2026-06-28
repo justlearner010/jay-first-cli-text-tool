@@ -41,10 +41,10 @@ def run(args):
         handle_summary(text)
 
     if args.freq:
-        handle_freq(filename, args.top)
+        handle_freq(text, args.top)
 
     if args.status:
-        handle_status(filename)
+        handle_status(text)
 
     if args.createjson:
         handle_createjson(filename, text)
@@ -56,29 +56,47 @@ def run(args):
     print("运行完毕")
     return 0
 
+def build_summary(text):
+    return summarize_text(text, mode="brief")
+
 
 def handle_summary(text):
-    summary = summarize_text(text, mode="brief")
-    print(summary)
+    print(build_summary(text))
 
 
-def handle_freq(filename, top):
-    freq_result = word_freq_cnt(filename, top)
+def build_freq(text, top):
+    freq_result = word_freq_cnt(text, top)
+
+    return freq_result
+
+
+def handle_freq(text, top):
     print("Top 10 words in this text!")
-    print(freq_result)
+    print(build_freq(text, top))
 
 
-def handle_status(filename):
-    stats = TextStats(filename)
+def build_status(text):
+    stats = TextStats(text)
     lines = stats.line_check()
     words = stats.word_check()
     space = stats.space_check()
     digit = stats.digit_check()
+    stats_result = {
+        "lines": lines,
+        "words": words,
+        "space": space,
+        "digit": digit,
+    }
+    return stats_result
 
-    print(f"行数为{lines}行")
-    print(f"单词数为{words}个单词")
-    print(f"数字的个数为{digit}")
-    print(f"空格数为{space}")
+
+def handle_status(text):
+    stats = build_status(text)
+
+    print(f"行数为{stats['lines']}行")
+    print(f"单词数为{stats['words']}个单词")
+    print(f"数字的个数为{stats['digit']}")
+    print(f"空格数为{stats['space']}")
 
 
 def handle_createjson(filename, text):
@@ -93,9 +111,16 @@ def handle_createjson(filename, text):
     print("Successfully create the json")
 
 
-def handle_word(text, word):
+def build_word(text, word):
     target_word = word.strip().lower()
     count = count_words(text, target_word)
+
+    return target_word, count
+
+
+def handle_word(text, word):
+    target_word, count = build_word(text, word)
+
     print(f"{target_word}: {count}")
 
 
