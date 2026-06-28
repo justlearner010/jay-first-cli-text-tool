@@ -21,5 +21,3 @@ class TextStats:
 
     def digit_check(self):
         return sum(char.isdigit() for char in self.text)
-
-    =
