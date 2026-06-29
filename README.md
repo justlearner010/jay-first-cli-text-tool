@@ -41,6 +41,13 @@ Current test status at the time of migration: 30 passed, 1 xfailed.
 
 该数字只记录迁移时的快照；长期状态以 GitHub Actions 为准。预期失败测试记录了尚未实现的中文无空格分词能力。
 
+## 版本状态
+
+当前包版本仍是 `0.1.0`，记录在 `pyproject.toml` 中。后续计划在 parser 可测试化、错误处理测试和 core / I/O 解耦收口后，再统一提升版本号。
+
+- [版本记录](./CHANGELOG.md)：按版本记录新增、变更、修复和测试状态。
+- [开发流程回顾](./docs/development-review.md)：记录这个 CLI 项目从脚本练习到工程化小项目的完整演进。
+
 ## 当前状态与已知限制
 
 - 当前版本：`0.1.0`，作为可持续迭代的独立项目发布。
